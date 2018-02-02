@@ -159,7 +159,7 @@ echo "[1] Install all"
 echo "[2] Install Standalone  core"
 echo "[3] Install Plugin interface"
 echo
-echo -n "Choose your option [1-6]: "
+echo -n "Choose your option [1-3]: "
 menu_option=""
 while [[ $menu_option == "" ]]
 do
@@ -174,16 +174,6 @@ do
 	elif [[ $menu_option == "3" ]]; then
 		vmd_installation
 		exit 0
-	elif [[ $menu_option == "4" ]]; then
-		unstandalone
-		un_vmd_installation
-		exit 0	
-	elif [[ $menu_option == "5" ]]; then
-		unstandalone	
-		exit 0	
-	elif [[ $menu_option == "6" ]]; then
-		un_vmd_installation
-		exit 0	
 	else
 		echo -n "Invalid option. Choose your option [1-6]: " 
 		menu_option=""

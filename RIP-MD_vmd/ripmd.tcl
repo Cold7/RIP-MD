@@ -161,14 +161,7 @@ namespace eval RIPMD:: {
 	
 	variable toUse "segid"
 	
-	##############################
-	##
-	## CHARMM variables
-	##
-	#############################
-	
-	variable forceField "$::env(RIP_MD)/dat/top_all22_prot.rtf"
-	variable parameterFile "$::env(RIP_MD)/dat/par_all22_prot.prm"
+
 }
 
 
@@ -1250,7 +1243,24 @@ proc RIPMD::ripmd {} {
 		wm deiconify $w
 		return
 	}
+	##############################
+	##
+	## CHARMM variables
+	##
+	#############################
+	
 
+	set forceField "RIP_MD/dat/top_all22_prot.rtf"
+	set parameterFile "RIP_MD/dat/par_all22_prot.prm"
+	if {[catch {set RIPMD::pathToFiles [molinfo top get filename]} errmsg]} {
+		set a [tk_dialog .myDialog "RIP-MD" "Can not locate RIP-MD system variable. Have you installed the RIP-MD standalone core?" error 0 "Ok"]
+	} else {
+		set forceField "$::env(RIP_MD)/dat/top_all22_prot.rtf"
+		set parameterFile "$::env(RIP_MD)/dat/par_all22_prot.prm"		
+	}
+
+
+	
 	set w [toplevel ".ripmd"]
 	#
 	wm title $w "RIP-MD - Residue Interactions in Protein Molecular Dynamic"
