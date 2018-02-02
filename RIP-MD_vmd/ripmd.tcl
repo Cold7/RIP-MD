@@ -162,6 +162,9 @@ namespace eval RIPMD:: {
 	variable toUse "segid"
 	
 
+	variable forceField "RIP_MD/dat/top_all22_prot.rtf"
+	variable parameterFile "RIP_MD/dat/par_all22_prot.prm"	
+
 }
 
 
@@ -1250,13 +1253,12 @@ proc RIPMD::ripmd {} {
 	#############################
 	
 
-	set forceField "RIP_MD/dat/top_all22_prot.rtf"
-	set parameterFile "RIP_MD/dat/par_all22_prot.prm"
-	if {[catch {set RIPMD::pathToFiles [molinfo top get filename]} errmsg]} {
+
+	if {[catch {set RIPMD::forceField "$::env(RIP_MD)/dat/top_all22_prot.rtf"} errmsg]} {
 		set a [tk_dialog .myDialog "RIP-MD" "Can not locate RIP-MD system variable. Have you installed the RIP-MD standalone core?" error 0 "Ok"]
 	} else {
-		set forceField "$::env(RIP_MD)/dat/top_all22_prot.rtf"
-		set parameterFile "$::env(RIP_MD)/dat/par_all22_prot.prm"		
+		set RIPMD::forceField "$::env(RIP_MD)/dat/top_all22_prot.rtf"
+		set RIPMD::parameterFile "$::env(RIP_MD)/dat/par_all22_prot.prm"		
 	}
 
 
