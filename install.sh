@@ -134,8 +134,6 @@ function vmd_installation {
 	if [ -d "$vmdRIPMDpath" ]; then
 		chmod -R 777 $vmdRIPMDpath
 		echo "RIP-MD VMD plugin interface was installed succefully"
-		echo "Creating environment variable of RIP-MD in .bashrc file"
-		echo "export RIPMD_VMD=$vmdpath/plugins/noarch/tcl/RIP-MD" >> $HOME/.bashrc		
 		aux=""
 		echo
 		echo 'vmd_install_extension ripmd ripmd_tk "Analysis/RIP-MD"' >> "$vmdpath/.vmdrc" || echo "Error, please add the following line to $vmdpath/.vmdrc: vmd_install_extension ripmd ripmd_tk \"Analysis/RIP-MD\""
