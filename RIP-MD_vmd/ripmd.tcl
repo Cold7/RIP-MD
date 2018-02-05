@@ -1360,7 +1360,7 @@ proc RIPMD::ripmd {} {
 	grid [label $w.n.f1.selectionToComputeText -text "Selection to compute"]
 	place $w.n.f1.selectionToComputeText -x 10 -y 280
 	grid  [entry $w.n.f1.selToCompute -width 15 -justify left -textvariable RIPMD::proteinSelection]
-	place $w.n.f1.selToCompute -x 150 -y 280
+	place $w.n.f1.selToCompute -x 180 -y 280
 	grid [label $w.n.f1.selectionToComputeText2 -text "(It use a syntax very similar to CHARMM."]
 	place $w.n.f1.selectionToComputeText2 -x 10 -y 300	
 	grid [label $w.n.f1.selectionToComputeText3 -text "For more information please see the User manual )"]

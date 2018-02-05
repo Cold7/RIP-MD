@@ -41,7 +41,7 @@ def DCD(PSF, DCD, folder, frameSeparation,frameStart,frameEnd, nproc, Selection)
 		start=0
 	else:
 		if int(frameStart)>len(u.trajectory):
-			print "Start frame is bigger than the number of frames that compose MD trajectory, exiting..."
+			print "Error: Start frame is bigger than the number of frames that compose MD trajectory, exiting..."
 			exit()
 			
 		else:
@@ -56,7 +56,7 @@ def DCD(PSF, DCD, folder, frameSeparation,frameStart,frameEnd, nproc, Selection)
 		end= len(u.trajectory)
 	else:
 		if int(frameEnd)>len(u.trajectory):
-			print "End frame is bigger than the number of snapshots that compose MD trajectory ("+str(len(u.trajectory))+" frames)... exiting"
+			print "Error: End frame is bigger than the number of snapshots that compose MD trajectory ("+str(len(u.trajectory))+" frames)... exiting"
 			exit()
 		else:
 			end= int(frameEnd)
@@ -66,20 +66,21 @@ def DCD(PSF, DCD, folder, frameSeparation,frameStart,frameEnd, nproc, Selection)
 	## with end number
 	###############################
 	if start>=end:
-			print "Start frame is bigger or equal than end frame... exiting"
+			print "Error: Start frame is bigger or equal than end frame... exiting"
 			exit()
 
 	i=start
 	if int(frameSeparation)>=len(u.trajectory):
-		print "Separation frame value is equal or higher than the trajectory length ("+str(len(u.trajectory))+" frames)... exiting"
+		print "Error: Separation frame value is equal or higher than the trajectory length ("+str(len(u.trajectory))+" frames)... exiting"
 		exit()
 		
 	j=0
 	framesToExtract=[]	
-	while i<end:
+	while i<=end:
 		framesToExtract.append([j,i]) #j will be the frame id and i is the frame to extract
-		i+=int(frameSeparation)
+		i+=int(frameSeparation)+1
 		j+=1
+
 
 	######################################
 	## defining subgroups to extract
