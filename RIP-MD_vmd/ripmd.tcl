@@ -1363,7 +1363,7 @@ proc RIPMD::ripmd {} {
 	place $w.n.f1.selToCompute -x 180 -y 280
 	grid [label $w.n.f1.selectionToComputeText2 -text "(It use a syntax very similar to CHARMM."]
 	place $w.n.f1.selectionToComputeText2 -x 10 -y 300	
-	grid [label $w.n.f1.selectionToComputeText3 -text "For more information please see the User manual )"]
+	grid [label $w.n.f1.selectionToComputeText3 -text "For more information please read the User manual )"]
 	place $w.n.f1.selectionToComputeText3 -x 10 -y 315		
 	
 	grid [label $w.n.f1.warningText1 -text "* Coulomb potential and VdW contacts could take long time to be computed."] 
