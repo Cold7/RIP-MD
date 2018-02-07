@@ -1850,8 +1850,8 @@ proc RIPMD::ripmd {} {
 				}				
 			
 			} elseif {$RIPMD::dcd !="*" && $RIPMD::psf != "*"} {
-							
-				append RIPMD::command " --dcd  $RIPMD::dcd --psf $RIPMD::psf --reference_frame $RIPMD::frame "
+	
+				append RIPMD::command " --dcd  $RIPMD::dcd --psf $RIPMD::psf --reference_frame $RIPMD::frame --separation_frame $RIPMD::frame_separation --frame_start $RIPMD::frame_start --frame_end $RIPMD::frame_end "
 				
 				#percentaje of time
 				append RIPMD::command " --time " $RIPMD::percentaje
@@ -2098,7 +2098,7 @@ proc RIPMD::ripmd {} {
 					return
 				}
 							
-				append RIPMD::command " --dcd  $RIPMD::dcd --psf $RIPMD::psf --reference_frame $RIPMD::frame "
+				append RIPMD::command " --dcd  $RIPMD::dcd --psf $RIPMD::psf --reference_frame $RIPMD::frame --separation_frame $RIPMD::frame_separation --frame_start $RIPMD::frame_start --frame_end $RIPMD::frame_end "
 				
 				#percentaje of time
 				append RIPMD::command " --time " $RIPMD::percentaje

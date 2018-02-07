@@ -25,8 +25,8 @@ def Pearson(pdb, output, file,fromRIPMD=False):
 	total=0
 	for segment in sel:
 		chains[0].append(segment.segid)
-		chains[1].append(len(segment))
-		total+=len(segment)
+		chains[1].append(len(segment.atoms.residues))
+		total+=len(segment.atoms.residues)
 	x_axis_lenght=((-1*(total))/8)
 	fig, ax = plt.subplots()	
 	#adding axis
