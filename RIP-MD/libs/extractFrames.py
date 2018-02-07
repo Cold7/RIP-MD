@@ -76,7 +76,7 @@ def DCD(PSF, DCD, folder, frameSeparation,frameStart,frameEnd, nproc, Selection)
 		
 	j=0
 	framesToExtract=[]	
-	while i<=end:
+	while i<end:
 		framesToExtract.append([j,i]) #j will be the frame id and i is the frame to extract
 		i+=int(frameSeparation)+1
 		j+=1
