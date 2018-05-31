@@ -128,7 +128,6 @@ parser.add_argument("-rf","--reference_frame",help="Reference frame to display i
 
 args = parser.parse_args()
 
-
 if args.version:
 	print "RIP-MD Version 2.0.0"
 	exit()
@@ -184,11 +183,23 @@ else:
 	except:
 		print "\tTermporal folder already exist... omitting..."
 	try:
-		os.mkdir(args.output+"/RIP-MD_Results")
+		if args.output:
+			os.mkdir(args.output+"/RIP-MD_Results")
 		print "\tResults folder created..."
 	except:
-		shutil.rmtree(args.output+"/RIP-MD_Results")
-		os.mkdir(args.output+"/RIP-MD_Results")
+		try:
+			shutil.rmtree(args.output+"/RIP-MD_Results/Attrs")
+		except:
+			pass
+		try:
+			shutil.rmtree(args.output+"/RIP-MD_Results/Edges")
+		except:
+			pass
+		try:
+			shutil.rmtree(args.output+"/RIP-MD_Results/Graphs")
+		except:
+			pass
+		#os.mkdir(args.output+"/RIP-MD_Results")
 		print "\tResults folder created..."
 	try:
 		os.mkdir(args.output+"/RIP-MD_Results/Edges")
