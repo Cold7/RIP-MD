@@ -12,7 +12,7 @@ namespace eval RIPMD:: {
 	##########################################
 	
 	#checkbuttons variables
-	variable calpha 1
+	variable calpha 1zx
 	variable hbonds 1
 	variable salt 1
 	variable disulphide 1
@@ -164,7 +164,7 @@ namespace eval RIPMD:: {
 
 	variable forceField "RIP_MD/dat/top_all22_prot.rtf"
 	variable parameterFile "RIP_MD/dat/par_all22_prot.prm"	
-
+	variable hist "All"
 }
 
 
@@ -1058,6 +1058,7 @@ proc RIPMD::loadResults {} {
 	$RIPMD::w.n.f5.vdw configure -state normal
 	$RIPMD::w.n.f5.coulomb configure -state normal
 	$RIPMD::w.n.f5.showPearson configure -state normal
+	$RIPMD::w.n.f5.showHist configure -state normal
 	
 	#deleting actual representations
 	$RIPMD::w.n.f5.nodesBox.l delete 0 end	
@@ -2381,7 +2382,39 @@ proc RIPMD::ripmd {} {
     
 	}]
 	place $w.n.f5.showPearson -x 823 -y 100
+
+
+	grid [label $w.n.f5.histogramText -text "Select interaction to compute interaction presence Histograms"]
+	place $w.n.f5.histogramText -x 600 -y 200
 	
+	ttk::menubutton $w.n.f5.histogram -menu $w.n.f5.histogram.type  -textvariable RIPMD::hist -width 41
+	menu $w.n.f5.histogram.type
+	$w.n.f5.histogram.type add command -label "All" -command { set RIPMD::hist "All" }
+	$w.n.f5.histogram.type add command -label "C Alpha" -command { set RIPMD::hist "C Alpha" }
+	$w.n.f5.histogram.type add command -label "H Bonds" -command { set RIPMD::hist "H Bonds" }
+	$w.n.f5.histogram.type add command -label "Salt Bridges" -command { set RIPMD::hist "Salt Bridges" }	
+	$w.n.f5.histogram.type add command -label "Cation - pi interaction" -command { set RIPMD::hist "Cation - pi interaction" }
+	$w.n.f5.histogram.type add command -label "pi - pi interaction" -command { set RIPMD::hist "pi - pi interaction" }
+	$w.n.f5.histogram.type add command -label "Arg - Arg interaction" -command { set RIPMD::hist "Arg - Arg interaction" }
+	$w.n.f5.histogram.type add command -label "Coulomb interaction" -command { set RIPMD::hist "Coulomb interaction" }
+	$w.n.f5.histogram.type add command -label "VdW contacts" -command { set RIPMD::hist "VdW contacts" }
+	
+	pack $w.n.f5.histogram
+	place $w.n.f5.histogram -x 600 -y 240
+	
+################################################################################################
+
+	pack [button $w.n.f5.showHist -text "Display" -width 10 -state disable -command {
+		
+		set a [tk_dialog .myDialog "RIP-MD" "Computing Histograms, this could take several time" warning 0 "Ok"]
+		if { [catch { exec python $::env(RIP_MD)/libs/plotHist.py $RIPMD::hist $RIPMD::resultFolder } msg] } {
+			set a [tk_dialog .myDialog "RIP-MD Error" "Failed to open histogram Plot. Please execute this command in a terminal\n\npython $::env(RIP_MD)/libs/plotHist.py $RIPMD::pearson1 $RIPMD::pearson2 $RIPMD::resultFolder" error 0 "Ok"]
+			return
+		}    
+	}]
+	place $w.n.f5.showHist -x 840 -y 290
+
+################################################################################################	
 	
 	##### packing some graphical packages		
 	place $w.buttonFrame -x 950 -y 560
