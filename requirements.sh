@@ -15,6 +15,9 @@ if [[ $? -eq 0 ]]; then
 		fi
 	fi
 	
+	echo "Installing oython-tk"
+	apt-get install python-tk
+	
 	errorPIP="0"
 	pip install --upgrade pip || errorPIP="1"
 	if [[ $errorPIP == "1" ]]; then
