@@ -2393,6 +2393,7 @@ proc RIPMD::ripmd {} {
 	$w.n.f5.histogram.type add command -label "C Alpha" -command { set RIPMD::hist "C Alpha" }
 	$w.n.f5.histogram.type add command -label "H Bonds" -command { set RIPMD::hist "H Bonds" }
 	$w.n.f5.histogram.type add command -label "Salt Bridges" -command { set RIPMD::hist "Salt Bridges" }	
+	$w.n.f5.histogram.type add command -label "Disulfide Bridges" -command { set RIPMD::hist "Disulfide Bridges" }	
 	$w.n.f5.histogram.type add command -label "Cation - pi interaction" -command { set RIPMD::hist "Cation - pi interaction" }
 	$w.n.f5.histogram.type add command -label "pi - pi interaction" -command { set RIPMD::hist "pi - pi interaction" }
 	$w.n.f5.histogram.type add command -label "Arg - Arg interaction" -command { set RIPMD::hist "Arg - Arg interaction" }
