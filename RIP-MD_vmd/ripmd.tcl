@@ -2389,7 +2389,7 @@ proc RIPMD::ripmd {} {
 	
 	ttk::menubutton $w.n.f5.histogram -menu $w.n.f5.histogram.type  -textvariable RIPMD::hist -width 41
 	menu $w.n.f5.histogram.type
-	$w.n.f5.histogram.type add command -label "All" -command { set RIPMD::hist "All" }
+	$w.n.f5.histogram.type add command -label "All" -command { set RIPMD::hist "All interactions" }
 	$w.n.f5.histogram.type add command -label "C Alpha" -command { set RIPMD::hist "C Alpha" }
 	$w.n.f5.histogram.type add command -label "H Bonds" -command { set RIPMD::hist "H Bonds" }
 	$w.n.f5.histogram.type add command -label "Salt Bridges" -command { set RIPMD::hist "Salt Bridges" }	
@@ -2409,7 +2409,7 @@ proc RIPMD::ripmd {} {
 		
 		set a [tk_dialog .myDialog "RIP-MD" "Computing Histograms, this could take several time" warning 0 "Ok"]
 		if { [catch { exec python $::env(RIP_MD)/libs/plotHist.py $RIPMD::hist $RIPMD::resultFolder } msg] } {
-			set a [tk_dialog .myDialog "RIP-MD Error" "Failed to open histogram Plot. Please execute this command in a terminal\n\npython $::env(RIP_MD)/libs/plotHist.py $RIPMD::pearson1 $RIPMD::pearson2 $RIPMD::resultFolder" error 0 "Ok"]
+			set a [tk_dialog .myDialog "RIP-MD Error" "Failed to open histogram Plot. Please execute this command in a terminal\n\npython $::env(RIP_MD)/libs/plotHist.py $RIPMD::hist $RIPMD::resultFolder" error 0 "Ok"]
 			return
 		}    
 	}]
