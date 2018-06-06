@@ -12,7 +12,7 @@ namespace eval RIPMD:: {
 	##########################################
 	
 	#checkbuttons variables
-	variable calpha 1zx
+	variable calpha 1
 	variable hbonds 1
 	variable salt 1
 	variable disulphide 1
@@ -164,7 +164,7 @@ namespace eval RIPMD:: {
 
 	variable forceField "RIP_MD/dat/top_all22_prot.rtf"
 	variable parameterFile "RIP_MD/dat/par_all22_prot.prm"	
-	variable hist "All"
+	variable hist "All interactions"
 }
 
 
@@ -2409,7 +2409,7 @@ proc RIPMD::ripmd {} {
 		
 		set a [tk_dialog .myDialog "RIP-MD" "Computing Histograms, this could take several time" warning 0 "Ok"]
 		if { [catch { exec python $::env(RIP_MD)/libs/plotHist.py $RIPMD::hist $RIPMD::resultFolder } msg] } {
-			set a [tk_dialog .myDialog "RIP-MD Error" "Failed to open histogram Plot. Please execute this command in a terminal\n\npython $::env(RIP_MD)/libs/plotHist.py $RIPMD::hist $RIPMD::resultFolder" error 0 "Ok"]
+			set a [tk_dialog .myDialog "RIP-MD Error" "Failed to open histogram Plot. Please execute this command in a terminal\n\npython $::env(RIP_MD)/libs/plotHist.py \"$RIPMD::hist\" $RIPMD::resultFolder" error 0 "Ok"]
 			return
 		}    
 	}]
