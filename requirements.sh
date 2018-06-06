@@ -15,7 +15,7 @@ if [[ $? -eq 0 ]]; then
 		fi
 	fi
 	
-	echo "Installing oython-tk"
+	echo "Installing python-tk"
 	apt-get install python-tk
 	
 	errorPIP="0"
